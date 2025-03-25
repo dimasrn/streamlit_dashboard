@@ -21,10 +21,6 @@ jobs:
   - name: Fetch All Branches
    run: git fetch --all
 
-  - name: Configure Git User
-   run: |
-    git config --global user.name "dimasrn"
-    git config --global user.email "dimas.bhp10037@gmail.com"
 
   - name: Merge Dev into Master
    run: |
