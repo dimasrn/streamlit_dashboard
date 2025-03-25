@@ -1,29 +1,28 @@
 name: Merge Dev to Master
 
 on:
- push:
-  branches:
-   - dev
+  push:
+    branches:
+      - dev
 
 permissions:
- contents: write
+  contents: write
 
 jobs:
- merge-to-master:
-  runs-on: ubuntu-latest
+  merge-to-main:
+    runs-on: ubuntu-latest
 
-  steps:
-  - name: Checkout repository
-   uses: actions/checkout@v4
-   with:
-    fetch-depth: 0
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
 
-  - name: Fetch All Branches
-   run: git fetch --all
+    - name: Fetch All Branches
+      run: git fetch --all
 
-
-  - name: Merge Dev into Master
-   run: |
-    git checkout master
-    git merge dev --no-ff -m "Merge dev into master"
-    git push origin master
+    - name: Merge Dev into Master
+      run: |
+        git checkout master
+        git merge dev --no-ff -m "Merge dev into master"
+        git push origin master
