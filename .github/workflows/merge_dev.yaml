@@ -1,4 +1,4 @@
-name: Merge Dev to Main
+name: Merge Dev to Master
 
 on:
  push:
@@ -23,12 +23,12 @@ jobs:
 
   - name: Ensure Main Branch Exists
    run: |
-    git fetch origin main || echo "Branch main does not exist yet"
+    git fetch origin master || echo "Branch main does not exist yet"
 
   - name: Switch to Main Branch
    run: |
-    git checkout main || git checkout -b main origin/main
-    git pull origin main --rebase
+    git checkout master || git checkout -b master origin/master
+    git pull origin master --rebase
 
   - name: Update Dev Branch
    run: git pull origin dev --rebase
@@ -39,4 +39,4 @@ jobs:
   - name: Merge Dev into Main
    run: |
     git merge dev --no-ff -m "Merge dev into main"
-    git push origin main
+    git push origin master
