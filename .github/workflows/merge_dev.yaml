@@ -21,10 +21,20 @@ jobs:
   - name: Fetch All Branches
    run: git fetch --all
 
+  - name: Ensure Main Branch Exists
+   run: |
+    git fetch origin main || echo "Branch main does not exist yet"
+
   - name: Switch to Main Branch
    run: |
     git checkout main || git checkout -b main origin/main
     git pull origin main --rebase
+
+  - name: Update Dev Branch
+   run: git pull origin dev --rebase
+
+  - name: Debug Git Status
+   run: git status
 
   - name: Merge Dev into Main
    run: |
