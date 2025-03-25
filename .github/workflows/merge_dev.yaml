@@ -1,24 +1,28 @@
 name: Merge Dev to Main
 
 on:
- push:
-  branches:
-   - dev
+  push:
+    branches:
+      - dev
+
+permissions:
+  contents: write  # Memberikan izin untuk menulis ke repo
 
 jobs:
- merge-to-main:
-  runs-on: ubuntu-latest
+  merge-to-main:
+    runs-on: ubuntu-latest
 
-  steps:
-  - name: Checkout repository
-   uses: actions/checkout@v4
-   with:
-    fetch-depth: 0
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
 
-  - name: Merge Dev into Main
-   run: |
-    git config --global user.name "dimasrn"
-    git config --global user.email "dimas.bhp10037@gmail.com"
-    git checkout main
-    git merge dev --no-ff -m "Merge dev into main"
-    git push origin main
+    - name: Fetch All Branches
+      run: git fetch --all
+
+    - name: Merge Dev into Main
+      run: |
+        git checkout main
+        git merge dev
+        git push origin main
