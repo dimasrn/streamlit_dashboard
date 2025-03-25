@@ -23,6 +23,8 @@ jobs:
 
     - name: Merge Dev into Master
       run: |
+	git config --global user.email "dimas.bhp10037@gmail.com"
+  	git config --global user.name "dimasrn"
         git checkout master
         git merge dev --no-ff -m "Merge dev into master"
         git push origin master
