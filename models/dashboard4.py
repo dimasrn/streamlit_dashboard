@@ -142,6 +142,7 @@ for tile in st.session_state.tiles:
 
         st.subheader(f"📌 {tile_title}")  # Tampilkan nama yang bisa diubah pengguna
 
+       
         if selected_table and not df.empty:
             # Pilihan jenis visualisasi
             chart_type = st.selectbox(
@@ -149,6 +150,7 @@ for tile in st.session_state.tiles:
                 ["Table", "Bar Chart", "Line Chart", "Scatter", "Pie Chart"],
                 key=f"chart_{tile}"
             )
+            
 
             if chart_type == "Table":
                 st.dataframe(df)
@@ -167,6 +169,8 @@ for tile in st.session_state.tiles:
                     y_axis = st.selectbox("Pilih Y-Axis", num_cols, key=f"y_{tile}")
                     fig = px.bar(df, x=x_axis, y=y_axis) if chart_type == "Bar Chart" else px.line(df, x=x_axis, y=y_axis)
                 st.plotly_chart(fig)
+            
+
 
 # Hapus Semua Tile
 if st.sidebar.button("🗑 Hapus Semua Tile"):
